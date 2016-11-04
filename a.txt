@@ -1,0 +1,1637 @@
+/*主机*/
+#关闭防火墙
+systemctl stop firewalld.service
+//下载对应当前系统版本的nginx包(package)
+rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+yum -y install nginx
+systemctl start nginx
+//下载docker
+yum -y install docker
+systemctl restart docker
+//安装lamp环境
+docker pull tutum/lamp
+docker run -i -t docker.io/tutum/lamp bash
+
+/*现在进入到docker中*/
+//sudo apt-get -y install vim
+cd /etc/apt
+cp sources.list sources.list.bak
+vi sources.list
+sudo apt-get update
+sudo apt-get -y install curl
+sudo apt-get -y install php5-curl
+sudo apt-get -y install php5-gd
+sudo apt-get -y install php5-imagick
+cd /var/lib
+chmod 777 mysql
+/etc/init.d/apache2 restart
+sources.list内容：
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe
+exit
+
+/*进入主机*/
+//保存为lamp的镜像
+docker commit df27dc8fb603 lamp
+
+//生成容器
+docker run -ti -d -p 9000:80 --name www_cjxz_com -v /data/jenkins/workspace/www_cjxz_com/wordpress:/app lamp bash
+
+//设置开启自启动
+docker run -ti -d -p 9004:80 --name www_cjxz_com1 --restart=always -v /data/jenkins/workspace/www_cjxz_com/mysql:/var/lib/mysql lamp bash
+
+
+apt-get install mysql-server-5.5 - zentyal-core - mysql-server - mysql-client-5.5
+
+
+
+
+
+
+
+# wget  http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+建立nginx的yum仓库
+# rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
+下载并安装nginx
+# yum install nginx
+启动nginx服务
+systemctl start nginx
+关闭防火墙
+systemctl stop firewalld.service
+
+
+curl_init — 初始化一个cURL会话
+解决办法：
+1，安装php5-curl模块，默认路径会在/etc/php5/路径下
+sudo apt-get install php5-curl
+2，重启Apache服务器加载curl模块
+sudo service apache restart
+3，刷新。OK
+
+
+#1475833445
+yum -y install nginx
+#1475833470
+reboot
+#1475833493
+yum install nginx
+#1475833510
+yum install docker
+#1475833574
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://3a12549d.m.daocloud.io
+#1475833585
+systemctl restart docker
+#1475833712
+iptables -F
+#1475833826
+docker pull wordpress
+#1475842013
+docker run -e WORDPRESS_DB_PASSWORD=password -d --name wordpress --link wordpressdb:mysql  wordpress
+#1475842030
+docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress -d mysql:5.7
+#1475842036
+docker run --name wordpressdb -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=wordpress -d mysql
+#1475842043
+docker run -e WORDPRESS_DB_PASSWORD=password -d --name wordpress --link wordpressdb:mysql  wordpress
+#1475842050
+docker ps
+#1475841155
+docker images
+#1475841281
+cd /data/
+#1475841282
+ls
+#1475841292
+mkdir wordpress
+#1475841293
+ls
+#1475841295
+cd wordpress/
+#1475841295
+l
+#1475841520
+docker pull mysql
+#1475841664
+docker-compose
+#1475841768
+yum install docker-compose
+#1475841897
+ curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+#1475842312
+chmod +x /usr/local/bin/docker-compose
+#1475842318
+docker-compose --version
+#1475842374
+参、
+#1475842383
+docker ps
+#1475842387
+docker stop wordpress
+#1475842391
+docker stop wordpressdb
+#1475842398
+docker rm wordpress
+#1475842403
+docker rm wordpressdb
+#1475842407
+ls
+#1475842415
+vim wordpress.yml
+#1475842483
+mv wordpress.yml docker-compose.yml
+#1475842604
+docker-compose up
+#1475842947
+docker-compose
+#1475842984
+docker ps
+#1475842988
+docker ps -a
+#1475843093
+ls
+#1475843095
+vim docker-compose.yml 
+#1475843119
+docker start wordpress_web_1
+#1475843129
+docker wordpress_mysql_!
+#1475843130
+docker wordpress_mysql_1
+#1475843141
+docker start wordpress_mysql_1
+#1475843147
+docker start wordpress_web_1
+#1475843151
+docker ps
+#1475843168
+vim docker-compose.yml 
+#1475843257
+docker exec -ti  wordpress_web1 bash 
+#1475843263
+docker exec -ti  wordpress_web_1 bash 
+#1475843304
+ls
+#1475843306
+pull
+#1475843335
+ls
+#1475843352
+rz docker-compose.yml  
+#1475843357
+sz
+#1475843509
+mkdir huifutz
+#1475843512
+cd huifutz
+#1475843521
+mkdir wp-content
+#1475843578
+docker ps
+#1475843585
+docker stop wordpress_web_1
+#1475843591
+docker stop wordpress_mysql_1
+#1475843601
+docker rm wordpress_web_1
+#1475843608
+docker rm wordpress_mysql_!
+#1475843609
+docker rm wordpress_mysql_1
+#1475843615
+docker-compose build
+#1475843625
+docker-compose run
+#1475843636
+docker-compose
+#1475843676
+docker-compose create
+#1475843712
+docker-compose start
+#1475843728
+docker ps
+#1475843773
+docker stop wordpress_web_!
+#1475843775
+docker stop wordpress_web_1
+#1475843782
+docker stop wordpress_mysql_1
+#1475843790
+docker-compose up
+#1475843841
+docker ps
+#1475843844
+docker ps -a
+#1475843858
+ls
+#1475843859
+cd ..
+#1475843860
+ls
+#1475843863
+vim docker-compose.yml 
+#1475843881
+docker up
+#1475843889
+docker-compose create
+#1475843905
+docker-compose up
+#1475843929
+docker ps
+#1475843931
+docker ps-a
+#1475843935
+docker ps -a
+#1475843958
+docker stop wordpress_web_1
+#1475843964
+docker rm wordpress_web_!
+#1475843966
+docker rm wordpress_web_1
+#1475843982
+docker stop wordpress_mysql_1 | docker rm wordpress_mysql_1
+#1475843986
+docker ps -a
+#1475844055
+ls
+#1475844058
+vim docker-compose.yml 
+#1475844075
+docker-compose up
+#1475844126
+docker ps -a
+#1475844140
+docker exec -ti wordpress_mysql_1 bash
+#1475844176
+docker start wordpress_mysql_1
+#1475844178
+docker exec -ti wordpress_mysql_1 bash
+#1475844274
+ls
+#1475844279
+rm docker-compose.yml 
+#1475844285
+vim docker-compose.yml
+#1475844296
+rm -rf huifutz/
+#1475844297
+ls
+#1475844307
+docker ps -a
+#1475844309
+docker ps
+#1475844322
+docker stop wordpress_mysql_1 | docker rm wordpress_mysql_1
+#1475844330
+docker ps
+#1475844333
+docker ps -a
+#1475844338
+docker rm wordpress_web_!
+#1475844342
+docker rm wordpress_web_1
+#1475844347
+docker rm wordpress_mysql_1
+#1475844349
+ls
+#1475844363
+mkdir huifutz
+#1475844372
+mv docker-compose.yml huifutz/docker-compose.yml
+#1475844375
+cd huifutz/
+#1475844375
+ls
+#1475844380
+docker-compose up
+#1475844575
+vim clean.sh
+#1475844614
+chmod +x clean.sh 
+#1475844617
+./clean.sh 
+#1475844622
+docker ps
+#1475844625
+docker ps -a
+#1475844632
+vim clean.sh 
+#1475844688
+./clean.sh 
+#1475844695
+vim clean.sh 
+#1475844705
+./clean.sh 
+#1475844712
+docker ps -a
+#1475844720
+vim docker-compose.yml 
+#1475844741
+docker-compose create
+#1475844746
+docker-compose start
+#1475844761
+docker ps - a
+#1475844763
+docker ps -a
+#1475844784
+ls
+#1475844786
+cd wordpress/
+#1475844787
+ls
+#1475844789
+ls -a
+#1475844792
+cat .htaccess/
+#1475844795
+cat .htaccess
+#1475844817
+cat /usr/share/zoneinfo/Asia/Shanghai
+#1475844842
+cd ..
+#1475844844
+./clean.sh 
+#1475844850
+ks
+#1475844851
+ls
+#1475844860
+cd wordpress/
+#1475844862
+cd mysql
+#1475844865
+ll
+#1475844956
+ls
+#1475844958
+ll -a
+#1475844963
+vim .htaccess
+#1475844967
+ls
+#1475844968
+ll -a
+#1475844970
+cd ..
+#1475844971
+ls
+#1475844978
+docker-compose up
+#1475845060
+./clean.sh 
+#1475845067
+vim docker-compose.yml 
+#1475845086
+docker-compose up
+#1475845149
+./clean.sh 
+#1475845152
+docker-compose up
+#1475845204
+docker start
+#1475845207
+ls
+#1475845212
+docker-compose start
+#1475845239
+docker ps
+#1475845243
+docker exec -ti huifutz_web_1
+#1475845245
+docker exec -ti huifutz_web_1 bash
+#1475845292
+ls
+#1475845295
+cd wordpress/
+#1475845295
+ls
+#1475845297
+ll 0a
+#1475845299
+ll -a
+#1475845303
+vim .htaccess 
+#1475845320
+cd ..
+#1475845325
+bash clean.sh
+#1475845334
+vim docker-compose.yml 
+#1475845367
+docker-compose up
+#1475845397
+docker-compose start
+#1475845413
+bash clean.sh 
+#1475845423
+cd ..
+#1475845427
+mkdir xjpdf
+#1475845441
+cp huifutz/docker-compose.yml xjpdf/
+#1475845452
+cp huifutz/clean.sh xjpdf/
+#1475845454
+cd xjpdf/
+#1475845456
+vim clean.sh 
+#1475845476
+docker-compose up
+#1475845500
+./clean.sh 
+#1475845505
+vim docker-compose.yml 
+#1475845530
+docker-compose up
+#1475845579
+cp /data/wordpress/huifutz/wordpress/.htaccess /data/wordpress/xjpdf/wordpress/
+#1475845583
+ls
+#1475845593
+docker-compose create
+#1475845597
+docker-compose start
+#1475845627
+docker ps 0a
+#1475845629
+docker ps 
+#1475845635
+docker ps -a
+#1475845640
+./clean.sh 
+#1475845647
+ls
+#1475845651
+vim docker-compose.yml 
+#1475845668
+docker-compose up
+#1475845739
+docker ps
+#1475845745
+docker-compose
+#1475845754
+./clean.sh 
+#1475845760
+docker-compose create
+#1475845764
+docker-compose start
+#1475845776
+docker ps
+#1475845787
+docker logs xjpdf_web_1
+#1475845848
+./clean.sh 
+#1475845857
+docker-compose create
+#1475845862
+docker-compose start
+#1475845869
+docker logs xjpdf_web_1
+#1475845895
+./clean.sh 
+#1475845913
+docker-compose up
+#1475845950
+docker-compose start
+#1475845957
+cd ..
+#1475845958
+ls
+#1475845959
+cd huifutz/
+#1475845964
+docker-compose up
+#1475845990
+docker-compose stasrt
+#1475846005
+docker-compose start
+#1475846009
+docker ps
+#1475848735
+cd /data/wordpress/
+#1475848736
+ls
+#1475848741
+mkdir anzhuo_huifudashi_com
+#1475848749
+cd anzhuo_huifudashi_com/
+#1475848751
+mkdir wo
+#1475848754
+rm wo
+#1475848757
+rm -r wo
+#1475848762
+mkdir wordpress
+#1475848772
+cp ..
+#1475848774
+cd ..
+#1475848783
+cd xjpdf/docker-compose.yml anzhuo_huifudashi_com/
+#1475848788
+cp xjpdf/docker-compose.yml anzhuo_huifudashi_com/
+#1475848799
+cp xjpdf/wordpress/.htaccess anzhuo_huifudashi_com/wordpress/
+#1475848822
+cp xjpdf/clean.sh anzhuo_huifudashi_com/
+#1475848822
+ls
+#1475848825
+cd anzhuo_huifudashi_com/
+#1475848825
+ls
+#1475848828
+vim docker-compose.yml 
+#1475848883
+vim clean.sh 
+#1475848895
+lc
+#1475848896
+ls
+#1475848942
+vim docker-compose.yml 
+#1475849083
+cd wordpress/
+#1475849085
+unzip wp-content.zip 
+#1475849088
+yum install unzip
+#1475849092
+unzip wp-content.zip 
+#1475849132
+ls
+#1475849134
+cd ..
+#1475849134
+ls
+#1475849139
+docker-compose up
+#1475849188
+docker-compose start
+#1475849380
+cd /etc/nginx/conf.d/
+#1475849394
+vim anzhuo_huifudashi_com.conf
+#1475849410
+systemctl restart nginx
+#1475849497
+cd /data/wordpress/anzhuo_huifudashi_com/wordpress/wp-content/
+#1475849497
+ls
+#1475849504
+cd themes/test-android-01
+#1475849504
+ls
+#1475849507
+vim functions.php 
+#1475849713
+cd ..
+#1475849719
+unzip wp-content
+#1475849919
+cd /etc/nginx/conf.d/
+#1475849920
+ls
+#1475849924
+cp anzhuo_huifudashi_com.conf anzhuo_huifudashi_com.conf.bak
+#1475850213
+systemctl restart nginx
+#1475850380
+docker images
+#1475850382
+docker ps
+#1475850426
+ls
+#1475850431
+cp anzhuo_huifudashi_com.conf.bak anzhuo_huifudashi_com.conf
+#1475850435
+systemctl restart nginx
+#1475852892
+ls
+#1475852897
+cp anzhuo_huifudashi_com.conf anzhuo_huifudashi_com.conf
+#1475852899
+y
+#1475852901
+systemctl restart nginx
+#1475852920
+vim anzhuo_huifudashi_com.conf
+#1475852934
+cp anzhuo_huifudashi_com.conf.bak anzhuo_huifudashi_com.conf
+#1475852937
+systemctl restart nginx
+#1475895211
+service httpd status
+#1475895234
+history
+#1475895289
+uname -a
+#1475895321
+lsb_release -a
+#1475895340
+cat /etc/redhat-release
+#1475895472
+top
+#1475895509
+df -h
+#1475895608
+systemctl list -units --type=service
+#1475895690
+systemctl list-units –type
+#1475895905
+cd /
+#1475895906
+ls
+#1475894487
+cd /
+#1475894487
+ls
+#1475894489
+cd /www/
+#1475894490
+ls
+#1475894492
+cd /data/
+#1475894493
+ls
+#1475894494
+cd wordpress/
+#1475894495
+ls
+#1475894498
+cd anzhuo_huifudashi_com/
+#1475894498
+ls
+#1475894505
+cd wordpress/
+#1475894506
+ls
+#1475894512
+zip -r wp-content.zip wp-content/
+#1475894515
+yum install zip
+#1475894528
+zip -r wp-content.zip wp-content/
+#1475894531
+ls
+#1475894533
+cd ..
+#1475894535
+ls
+#1475894547
+cp wordpress/wp-content.zip .
+#1475894547
+ls
+#1475894551
+cd wordpress/
+#1475894552
+ls
+#1475894553
+ll
+#1475894555
+ls -a
+#1475894558
+cd ..
+#1475894558
+ls
+#1475894562
+cd wordpress/
+#1475894564
+rm -r *
+#1475894572
+rm -rf *
+#1475894573
+ls
+#1475894574
+cd ..
+#1475894574
+ls
+#1475894578
+vim docker-compose.yml 
+#1475894605
+cat docker-compose.yml 
+#1475894607
+ls
+#1475894608
+cd ..
+#1475894609
+ls
+#1475894610
+cd anzhuo_huifudashi_com/
+#1475894613
+./clean.sh 
+#1475894628
+docker-compose up
+#1475894657
+ls
+#1475894659
+cd wordpress/
+#1475894659
+ls
+#1475894662
+ll
+#1475894711
+docker ls
+#1475894713
+ls
+#1475894715
+cd ..
+#1475894716
+ls
+#1475894720
+./clean.sh 
+#1475894725
+docker ps
+#1475894730
+docker ps -a
+#1475894786
+./clean.sh 
+#1475894793
+docker ps -a
+#1475894805
+docker-compose up
+#1475894860
+ls
+#1475894868
+cp wp-content.zip wordpress/
+#1475894868
+ls
+#1475894869
+cd wordpress/
+#1475894870
+ls
+#1475894875
+unzip wp-content.zip 
+#1475894899
+cd ..
+#1475894905
+docker-compose start
+#1475895525
+ls
+#1475895526
+cd wordpress/
+#1475895529
+cd ..
+#1475895534
+chmod -R 777 wordpress/
+#1475895790
+cd /etc/nginx/conf.d/
+#1475895790
+ls
+#1475895793
+cd anzhuo_huifudashi_com.conf
+#1475895794
+ls
+#1475895851
+systemctl restart nginx
+#1475895927
+chkconfig
+#1475895932
+chkconfig docker on
+#1475895940
+chkconfig 
+#1475896175
+systemctl start docker.service
+#1475896188
+systemctl enable docker.service
+#1475896192
+chkconfig
+#1475896200
+cd /data/www
+#1475896200
+ls
+#1475896206
+cd /data/wwww
+#1475896206
+ls
+#1475896211
+cd /data/wordpress/
+#1475896212
+ls
+#1475896213
+cd anzhuo_huifudashi_com/
+#1475896213
+ls
+#1475896219
+./clean.sh 
+#1475896226
+docker-compose up
+#1475896238
+docker-compose start
+#1475896245
+reboot
+#1475896272
+docker ps
+#1475896274
+docker ps-a
+#1475896280
+docker ps -a
+#1475896282
+docker ps
+#1475896291
+systemctl status nginx
+#1475896296
+systemctl start nginx
+#1475896303
+systemctl enable nginx.service
+#1475896311
+chkconfi
+#1475896313
+chkconfig
+#1475896316
+reboot
+#1475896535
+cd /etc/nginx/conf.d/
+#1475896535
+ls
+#1475896538
+cat anzhuo_huifudashi_com.conf
+#1475896547
+cp anzhuo_huifudashi_com.conf.bak anzhuo_huifudashi_com.conf
+#1475896556
+systemctl restart nginx
+#1475898917
+cd /
+#1475898918
+ls
+#1475898936
+cd /usr/
+#1475898937
+ls
+#1475898946
+cd local/
+#1475898947
+ls
+#1475899012
+cd share/
+#1475899012
+ls
+#1475899016
+cd applications/
+#1475899017
+ls
+#1475899101
+rpm -qal nginx
+#1475899134
+cd /etc/
+#1475899135
+ls
+#1475899153
+cd nginx/
+#1475899154
+ls
+#1475899170
+cd conf.d/
+#1475899171
+ls
+#1475899186
+cd ..
+#1475899192
+vi nginx.conf
+#1475899252
+exit
+#1475905452
+mysql -v
+#1475905459
+mysqld -v
+#1475905462
+mysqld -V
+#1475905483
+nginx -v
+#1475905503
+cd /etc/nginx/
+#1475905506
+ls
+#1475905520
+vi nginx.conf
+#1475905556
+cd /usr/share/nginx/
+#1475905559
+cd html/
+#1475905560
+ls
+#1475905584
+vi test.php
+#1475905643
+php -V
+#1475905648
+php -v
+#1475905764
+cd /etc/
+#1475905765
+ls
+#1475905845
+vi my.cnf
+#1475906158
+ps -ef | grep mysql
+#1475906170
+ps -ef | grep php
+#1475906179
+ps -ef | grep phpcgi
+#1475906186
+ps -ef | grep php-fpm
+#1475906204
+mysql -uroot -p
+#1475908138
+cd /etc/
+#1475908139
+ls
+#1475908263
+cd /data
+#1475908264
+ls
+#1475908270
+cd lost+found/
+#1475908271
+ls
+#1475908273
+cd ..
+#1475912651
+cd /usr/share/nginx/html/
+#1475912651
+ls
+#1475912664
+mv test.php  test.html
+#1475912665
+ls
+#1475912669
+vi test.html 
+#1475917509
+cd /var/lib/docker/
+#1475917510
+ls
+#1475919924
+docker ps
+#1475921202
+cd /etc/apt
+#1475980120
+cd /www/data/
+#1475980120
+lks
+#1475980123
+cd /www/
+#1475980124
+ls
+#1475980125
+cd /data/
+#1475980126
+ls
+#1475980128
+cd wordpress/
+#1475980128
+ls
+#1475980142
+cd anzhuo_huifudashi_com/
+#1475980143
+ls
+#1475980144
+cd ..
+#1475980151
+mkdir bianji_xjpdf_com
+#1475980163
+cp anzhuo_huifudashi_com/clean.sh bianji_xjpdf_com/
+#1475980168
+cp anzhuo_huifudashi_com/docker-compose.yml  bianji_xjpdf_com/
+#1475980174
+cd anzhuo_huifudashi_com/
+#1475980174
+ls
+#1475980176
+ll
+#1475980177
+ls
+#1475980180
+cd ..
+#1475980181
+cd anzhuo_huifudashi_com/
+#1475980182
+ls
+#1475980184
+cd ..
+#1475980186
+cd bianji_xjpdf_com/
+#1475980186
+ls
+#1475980190
+vim clean.sh 
+#1475980215
+vim docker-compose.yml 
+#1475980249
+docker-compose up
+#1475980314
+./clean.sh 
+#1475980328
+cd /etc/nginx/conf.d/
+#1475980328
+ls
+#1475980341
+cp anzhuo_huifudashi_com.conf.bak bianji_xjpdf_com.conf
+#1475980344
+vim bianji_xjpdf_com.conf 
+#1475980383
+systemctl restart nginx
+#1475980429
+cd /data
+#1475980431
+ls
+#1475980433
+cd wordpress/
+#1475980433
+ls
+#1475980434
+cd bianji_xjpdf_com/
+#1475980435
+ls
+#1475980440
+docker-compose start
+#1475980445
+docker-compose up
+#1475980540
+cd /etc/nginx/conf.d/
+#1475980541
+ls
+#1475980560
+cp https_anzhuo_huifudashi_com.conf https_bianji_xjpdf_com.conf
+#1475980564
+vim https_bianji_xjpdf_com.conf 
+#1475980619
+cat anzhuo_huifudashi_com.conf
+#1475980631
+cp anzhuo_huifudashi_com.conf bianji_xjpdf_com.conf 
+#1475980633
+vim bianji_xjpdf_com.conf 
+#1475980673
+systemctl restart nginx
+#1475980680
+systemctl status nginx
+#1475981722
+ls
+#1475981736
+mv https_bianji_xjpdf_com.conf https_bianji_xjpdf_com.conf.bak
+#1475981738
+systemctl status nginx
+#1475981740
+systemctl restart nginx
+#1475983355
+cd ..
+#1475983355
+ls
+#1475983357
+cd ssl
+#1475983357
+ls
+#1475983380
+systemctl restart nginx
+#1475983975
+cd ../conf.d/
+#1475983975
+ls
+#1475983979
+vim https_bianji_xjpdf_com.conf 
+#1475984004
+cd /data/wordpress/bianji_xjpdf_com/
+#1475984007
+docker-compose start
+#1475997717
+cd /data/
+#1475997718
+ls
+#1475997724
+cd wordpress/
+#1475997725
+ls
+#1475997731
+cd www_qianglihuifu_com/
+#1475997732
+ls
+#1475997740
+cat docker-compose.yml 
+#1475997950
+ls 
+#1475997954
+cat clean.sh 
+#1475998198
+cd ..
+#1475998199
+ls
+#1475998204
+cd anzhuo_huifudashi_com/
+#1475998205
+ls
+#1475998214
+cat docker-compose.yml 
+#1475998221
+cat clean.sh 
+#1475998240
+cd ..
+#1475998241
+cd www_qianglihuifu_com/
+#1475998243
+ls
+#1475995085
+cd /data/
+#1475995087
+df 
+#1475995089
+df -h
+#1475995102
+ls
+#1475995104
+cd wordpress/
+#1475995104
+ls
+#1475995108
+cd anzhuo_huifudashi_com/
+#1475995123
+cd ..
+#1475995133
+cp -r anzhuo_huifudashi_com www_qianglihuifu_com
+#1475995136
+ls
+#1475995138
+cd www_qianglihuifu_com/
+#1475995138
+ls
+#1475995166
+rm -rf mysql
+#1475995169
+rm -rf wordpress/
+#1475995169
+ls
+#1475995172
+vim clean.sh 
+#1475995278
+vim docker-compose.yml 
+#1475995327
+ls
+#1475995335
+docker-compose 
+#1475995338
+
+#1475995357
+vim docker-compose.yml 
+#1475995370
+docker-compose 
+#1475995378
+docker-compose up
+#1475995405
+docker-compose start
+#1475995414
+ls
+#1475995419
+cd mysql/
+#1475995419
+ls
+#1475995422
+cd ..
+#1475995425
+cd wordpress/
+#1475995426
+ls
+#1475995428
+cd ..
+#1475995441
+cd /etc/nginx/
+#1475995443
+ll
+#1475995449
+cd ssl
+#1475995450
+ll
+#1475995453
+cd ..
+#1475995455
+cd conf.d/
+#1475995456
+ls
+#1475995462
+cat anzhuo_huifudashi_com.conf
+#1475995471
+cat https_
+#1475995473
+cat https_anzhuo_huifudashi_com.conf 
+#1475997290
+pwd
+#1475997303
+cd /
+#1475997304
+ls
+#1475997323
+history
+#1475998423
+cd /data/wordpress/www_qianglihuifu_com/
+#1475998424
+ls
+#1475998429
+cd mysql/
+#1475998430
+ls
+#1475998530
+cd wordpress/
+#1475998534
+ls
+#1475998601
+cd /etc/nginx/ssl/
+#1475998601
+ls
+#1475998611
+cd ..
+#1475998612
+ls
+#1475998616
+cd conf.d/
+#1475998617
+ls
+#1476009325
+cat ~/.bash_history
+#1476009350
+vi ~/.bash_history
+#1476009393
+exit
+#1476009201
+docker exec -ti pay_sjhfrj_com bash
+#1476004775
+docker ps
+#1476004798
+cd /etc/nginx/
+#1476004798
+ls
+#1476004817
+cd conf.d/
+#1476004818
+ls
+#1476004827
+cp anzhuo_huifudashi_com.conf.bak www_qianglihuifu_com.conf
+#1476004836
+netstat -ltn
+#1476004846
+vim www_qianglihuifu_com.conf 
+#1476004980
+cp www_qianglihuifu_com.conf qianglihuifu_com.conf
+#1476004984
+vim qianglihuifu_com.conf 
+#1476005000
+cat https_anzhuo_huifudashi_com.conf 
+#1476005016
+cat bianji_xjpdf_com.conf 
+#1476005023
+vim qianglihuifu_com.conf 
+#1476005125
+systemctl restart nginx
+#1476005163
+ls
+#1476005176
+vim www_qianglihuifu_com.conf 
+#1476005188
+cd /data/
+#1476005189
+cd wordpress/
+#1476005190
+ls
+#1476005193
+cd www_qianglihuifu_com/
+#1476005194
+ls
+#1476005201
+vim docker-compose.yml 
+#1476005531
+systemctl restart nginx
+#1476006100
+docker pull tutum/lamp
+#1476006369
+ls
+#1476006371
+cd ..
+#1476006371
+ls
+#1476006377
+cd bianji_xjpdf_com/
+#1476006377
+ls
+#1476006380
+cd ..
+#1476006380
+ls
+#1476006383
+cd ..
+#1476006383
+lks
+#1476006384
+ls
+#1476006517
+docker 
+#1476006525
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   lamp
+#1476006536
+docker images
+#1476006564
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   tutum/lamp
+#1476006599
+docker exec -ti pay_sjhfrj_com bash
+#1476007249
+ls
+#1476007255
+docker images
+#1476007260
+docer ps
+#1476007263
+docker ps
+#1476007279
+docker commit pay_sjhfrj_com lamp
+#1476007290
+docker stop pay_sjhfrj_com
+#1476007303
+docker images
+#1476007318
+docker rm pay_sjhfrj_com
+#1476007320
+ls
+#1476007558
+docker rmi lamp
+#1476007700
+ls
+#1476008042
+cd jenkins/
+#1476008042
+ls
+#1476008044
+l
+#1476008194
+mkdir workspace
+#1476008194
+ls
+#1476008198
+cd ..
+#1476008199
+ls
+#1476008206
+mv pay_sjhfrj_com.zip jenkins/workspace/
+#1476008210
+cd jenkins/workspace/
+#1476008212
+unzip pay_sjhfrj_com.zip 
+#1476008239
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com/mysql:/var/lib/mysql   tutum:lamp
+#1476008245
+docker images
+#1476008265
+dockerdocker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com/mysql:/var/lib/mysql \
+#1476008267
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com/mysql:/var/lib/mysql   tutum/lamp
+#1476008352
+systemctl restart nginx
+#1476008378
+docekr stop lamp
+#1476008383
+docker stop pay_sjhfrj_com
+#1476008408
+docker rm pay_sjhfrj_com
+#1476008434
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   tutum/lamp
+#1476008455
+cd /data/jenkins/
+#1476008457
+cd ..
+#1476008463
+chmod -R 777 jenkins/
+#1476008467
+cd jenkins/workspace/
+#1476008468
+ls
+#1476008469
+cd pay_sjhfrj_com
+#1476008470
+ls
+#1476008478
+cls
+#1476008480
+cd mysql/
+#1476008481
+l
+#1476008482
+ls
+#1476008523
+docker stop pay_sjhfrj_com
+#1476008617
+ls
+#1476008622
+cd ..
+#1476008622
+ls
+#1476008651
+cd /data/jenkins/workspace/pay_sjhfrj_com_mysql
+#1476008653
+unzip pay_sjhfrj_com_mysql.zip 
+#1476008663
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   tutum/lamp
+#1476008666
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   tutum/lamp
+#1476008677
+ls
+#1476008688
+docker stop pay_sjhfrj_com
+#1476008693
+docker rm pay_sjhfrj_com
+#1476008696
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   tutum/lamp
+#1476008703
+ls
+#1476008708
+ccd mysql/
+#1476008709
+ls
+#1476008711
+cd mysql/
+#1476008712
+ls
+#1476008714
+cd ..
+#1476008715
+ls
+#1476008880
+rm -rf pay_sjhfrj_com_mysql/
+#1476008881
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql \
+#1476008887
+docker stop pay_sjhfrj_com
+#1476008893
+docker rm pay_sjhfrj_com
+#1476008897
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   tutum/lamp
+#1476008909
+cd pay_sjhfrj_com_mysql/
+#1476008910
+ls
+#1476008930
+docekr stop pay_sjhfrj_com
+#1476008937
+docker stop pay_sjhfrj_com
+#1476008953
+cd /data/jenkins/workspace/pay_sjhfrj_com_mysql
+#1476008956
+unzip pay_sjhfrj_com_mysql.zip 
+#1476008962
+docker start pay_sjhfrj_com
+#1476009023
+docker exec -ti pay_sjhfrj_com bash
+#1476009760
+ls
+#1476009768
+docker commit pay_sjhfrj_com lamp
+#1476009776
+ls
+#1476009780
+cd ..
+#1476009780
+ls
+#1476009788
+rm -rf pay_sjhfrj_com_mysql/
+#1476009789
+ls
+#1476009794
+rm pay_sjhfrj_com.zip 
+#1476009796
+ls
+#1476009803
+docker run --detach   --publish 9001:80   --restart always   --name weixin_api_huduntech   --volume /data/jenkins/workspace/weixin_api_huduntech/public_html:/app   lamp
+#1476009907
+ls
+#1476009989
+mkdir pay_sjhfrj_com_mysql
+#1476010003
+cd /data/jenkins/workspace/pay_sjhfrj_com_mysql
+#1476010007
+unzip pay_sjhfrj_com.zip 
+#1476010019
+ls
+#1476010020
+cd ..
+#1476010021
+ls
+#1476010022
+ll
+#1476010028
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   lamp
+#1476010036
+docker stop pay_sjhfrj_cin
+#1476010038
+docker stop pay_sjhfrj_com
+#1476010047
+docker rm pay_sjfhrj_com
+#1476010055
+docker rm pay_sjhfrj_com
+#1476010059
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   lamp
+#1476010077
+ls
+#1476010088
+rm -rf pay_sjhfrj_com_mysql/
+#1476010097
+docker run --detach   --publish 9000:80    --publish 3306:3306    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   lamp
+#1476010107
+docker stop pay_sjhfrj_com
+#1476010110
+docker rm pay_sjhfrj_com
+#1476010113
+docker run --detach   --publish 9000:80    --publish 3306:3306    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   lamp
+#1476010135
+docker logs pay_sjhfrj_com | grep admin
+#1476010225
+docker stop pay_sjhfrj_com
+#1476010238
+docker rm pay_sjhfrj_com
+#1476010240
+ls
+#1476010246
+cd pay_sjhfrj_com
+#1476010247
+ls
+#1476010250
+cd ..
+#1476010255
+cd pay_sjhfrj_com_mysql/
+#1476010256
+ls
+#1476010257
+docker run --detach   --publish 9000:80    --publish 3306:3306    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql \
+#1476010265
+docker run --detach   --publish 9000:80    --restart always   --name pay_sjhfrj_com   --volume /data/jenkins/workspace/pay_sjhfrj_com/public_html:/app   --volume /data/jenkins/workspace/pay_sjhfrj_com_mysql:/var/lib/mysql   lamp
+#1476010289
+docker ps
+#1476010332
+cd /data/jenkins/workspace/
+#1476010400
+reboot
+#1476010506
+cd /data/jenkins
+#1476010507
+ls
+#1476010513
+chmod -R 777 workspace/
+#1476010514
+ls
+#1476010515
+cd workspace/
+#1476010515
+ls
+#1476010518
+cd pay_sjhfrj_com
+#1476010518
+ls
+#1476010519
+ll -a
+#1476010523
+cd ..
+#1476010550
+ls
+#1476010554
+rm -rf weixin_api_huduntech/
+#1476010555
+ls
+#1476010589
+yum install git
+#1476010627
+ls
+#1476010629
+docker ps
+#1476011157
+ls
+#1476011215
+ls -h
+#1476011218
+ll -h
+#1476011245
+ls
+#1476011253
+unzip pay_sjhfrj_com.zip 
+#1476011316
+systemctl restart docker
+#1476022360
+cd /data
+#1476022361
+ls
+#1476022362
+cd wordpress/
+#1476022362
+ls
+#1476022364
+cd anzhuo_huifudashi_com/
+#1476022364
+ls
+#1476023366
+cd /etc/nginx/conf.d
+#1476023367
+ls
+#1476024967
+cd /etc/nginx/conf.d/
+#1476024967
+ls
