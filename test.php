@@ -1,4 +1,3 @@
-<?php
 easd
 dsda
 fsaf
